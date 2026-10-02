@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f0e9">
+    <title>GlowBeauty — beleza do seu jeito</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            color-scheme: light;
+            --ink: #25251f;
+            --muted: #77766d;
+            --paper: #f5f0e9;
+            --white: #fffdf9;
+            --accent: #b74735;
+            --accent-dark: #913528;
+            --line: #e8e0d6;
+            --green: #52634b;
+            --serif: "Playfair Display", Georgia, serif;
+            --sans: "DM Sans", sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { margin: 0; background: var(--white); color: var(--ink); font-family: var(--sans); }
+        button { font: inherit; }
+        button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+        .announcement { padding: 9px 16px; background: var(--green); color: white; text-align: center; font-size: 11px; letter-spacing: .08em; }
+        .site-header { position: sticky; top: 0; z-index: 5; background: rgba(255,253,249,.96); border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); }
+        .nav { height: 76px; max-width: 1240px; padding: 0 32px; margin: auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+        .wordmark { color: var(--ink); text-decoration: none; font: 600 27px var(--serif); letter-spacing: 0; }
+        .wordmark span { color: var(--accent); }
+        .nav-links { display: flex; gap: 34px; align-items: center; }
+        .nav-links a { color: var(--ink); font-size: 13px; text-decoration: none; }
+        .nav-links a:hover { color: var(--accent); }
+        .cart-trigger { min-height: 42px; padding: 0 14px; border: 1px solid var(--line); border-radius: 3px; background: transparent; color: var(--ink); cursor: pointer; font-size: 13px; }
+        .cart-trigger:hover { border-color: var(--ink); }
+        .cart-count { display: inline-grid; width: 21px; height: 21px; margin-left: 8px; place-items: center; border-radius: 50%; background: var(--accent); color: white; font-size: 11px; }
+
+        .hero { position: relative; display: flex; min-height: 660px; align-items: center; overflow: hidden; isolation: isolate; background: #44332e; }
+        .hero-copy { position: relative; z-index: 1; display: flex; width: min(100%, 1240px); flex-direction: column; align-items: flex-start; justify-content: center; margin: 0 auto; padding: 100px 32px; color: white; animation: rise-in .8s ease-out both; }
+        .eyebrow { margin: 0 0 18px; color: var(--green); font-size: 11px; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+        .hero .eyebrow { color: #f0b99f; }
+        .hero h1 { max-width: 700px; margin: 0; font: 500 clamp(60px, 7vw, 96px)/1.02 var(--serif); letter-spacing: 0; }
+        .hero h1 em { color: #f2a27d; font-weight: 500; }
+        .hero-copy > p:not(.eyebrow) { max-width: 420px; margin: 22px 0 28px; color: rgba(255,255,255,.86); font-size: 15px; line-height: 1.8; }
+        .primary-link, .add-button, .checkout-button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; padding: 0 23px; border: 0; border-radius: 2px; background: var(--accent); color: white; text-decoration: none; cursor: pointer; font-size: 12px; font-weight: 700; letter-spacing: .06em; transition: background .2s, transform .2s; }
+        .primary-link:hover, .add-button:hover, .checkout-button:hover { background: var(--accent-dark); transform: translateY(-1px); }
+        .hero .primary-link { background: #f2a27d; color: #29241f; }
+        .hero .primary-link:hover { background: #ffd0b5; }
+        .hero-media { position: absolute; z-index: 0; inset: 0; min-height: 0; background: #44332e url("https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=2000&q=90") center 42% / cover no-repeat; }
+        .hero-media::after { position: absolute; inset: 0; background: rgba(24, 21, 19, .48); content: ""; }
+        @keyframes rise-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+
+        .shop-section { max-width: 1240px; margin: 0 auto; padding: 88px 32px 100px; }
+        .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 30px; }
+        .section-heading .eyebrow { margin-bottom: 10px; }
+        .section-heading h2 { margin: 0; font: 500 42px/1.1 var(--serif); letter-spacing: 0; }
+        .section-note { margin: 0 0 4px; color: var(--muted); font-size: 13px; }
+        .product-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+        .product { min-width: 0; }
+        .product-image { position: relative; overflow: hidden; aspect-ratio: 4 / 4.6; background: var(--paper); }
+        .product-image img { width: 100%; height: 100%; display: block; object-fit: cover; transition: transform .45s ease; }
+        .product:hover .product-image img { transform: scale(1.04); }
+        .product-tag { position: absolute; top: 12px; left: 12px; padding: 7px 9px; background: var(--white); color: var(--green); font-size: 9px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+        .product-info { padding: 15px 1px 0; }
+        .product-info h3 { margin: 0; font: 500 19px/1.35 var(--serif); letter-spacing: 0; }
+        .product-info p { min-height: 38px; margin: 7px 0 14px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+        .product-buy { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+        .price { white-space: nowrap; font-size: 14px; font-weight: 700; }
+        .add-button { min-height: 38px; padding: 0 12px; font-size: 10px; }
+
+        .brand-note { display: grid; grid-template-columns: 1fr 1fr; min-height: 235px; background: #e9eee6; }
+        .brand-note-copy { align-self: center; max-width: 620px; padding: 48px 6vw 48px max(32px, calc((100vw - 1180px) / 2)); }
+        .brand-note h2 { margin: 0; font: 500 35px/1.2 var(--serif); letter-spacing: 0; }
+        .brand-note p { max-width: 390px; margin: 14px 0 0; color: #595f54; font-size: 13px; line-height: 1.8; }
+        .brand-note-image { background: #c6b9a8 url("https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1200&q=85") center 48% / cover no-repeat; }
+        footer { display: flex; justify-content: space-between; gap: 20px; padding: 27px max(32px, calc((100vw - 1180px) / 2)); color: var(--muted); font-size: 11px; }
+        .whatsapp-link { position: fixed; z-index: 8; right: 24px; bottom: 24px; display: inline-flex; min-height: 50px; align-items: center; justify-content: center; padding: 0 20px; border-radius: 999px; background: #168c54; box-shadow: 0 8px 24px rgba(24, 54, 36, .24); color: white; text-decoration: none; font-size: 13px; font-weight: 700; transition: background .2s, transform .2s; }
+        .whatsapp-link:hover { background: #107443; transform: translateY(-2px); }
+
+        .overlay { position: fixed; z-index: 10; inset: 0; visibility: hidden; background: rgba(26, 25, 22, .42); opacity: 0; transition: opacity .25s, visibility .25s; }
+        .overlay.open { visibility: visible; opacity: 1; }
+        .cart-panel { position: absolute; top: 0; right: 0; display: flex; width: min(440px, 100%); height: 100%; flex-direction: column; padding: 25px; background: var(--white); transform: translateX(100%); transition: transform .3s ease; }
+        .overlay.open .cart-panel { transform: translateX(0); }
+        .cart-header { display: flex; align-items: center; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+        .cart-header h2 { margin: 0; font: 500 28px var(--serif); letter-spacing: 0; }
+        .icon-button { width: 40px; height: 40px; border: 1px solid var(--line); border-radius: 2px; background: transparent; color: var(--ink); cursor: pointer; font-size: 22px; }
+        .cart-items { flex: 1; overflow: auto; padding: 10px 0; }
+        .empty-cart { padding: 35px 0; color: var(--muted); font-size: 14px; text-align: center; }
+        .cart-item { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+        .cart-item-name { font: 500 17px var(--serif); }
+        .cart-item-price { font-size: 13px; font-weight: 700; }
+        .cart-item-controls { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 12px; }
+        .quantity-button, .remove-button { border: 0; background: transparent; color: var(--ink); cursor: pointer; }
+        .quantity-button { width: 27px; height: 27px; border: 1px solid var(--line); }
+        .remove-button { padding: 4px 0; color: var(--accent); font-size: 11px; }
+        .cart-footer { padding-top: 18px; border-top: 1px solid var(--line); }
+        .cart-total { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 14px; }
+        .checkout-button { width: 100%; }
+        .checkout-button:disabled { background: #b8b4ae; cursor: not-allowed; transform: none; }
+        .demo-note { margin: 11px 0 0; color: var(--muted); font-size: 10px; line-height: 1.5; text-align: center; }
+        .toast { position: fixed; z-index: 20; right: 24px; bottom: 24px; padding: 13px 18px; background: var(--green); color: white; font-size: 13px; opacity: 0; pointer-events: none; transform: translateY(8px); transition: .2s; }
+        .toast.show { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 32px; }
+            .hero { min-height: 590px; }
+            .hero-media { background-position: 58% center; }
+        }
+        @media (max-width: 600px) {
+            .announcement { font-size: 9px; }
+            .nav { height: 64px; padding: 0 18px; }
+            .wordmark { font-size: 24px; }
+            .nav-links { display: none; }
+            .cart-trigger { min-height: 38px; padding: 0 10px; font-size: 12px; }
+            .hero { min-height: 580px; }
+            .hero-copy { padding: 76px 24px; }
+            .hero h1 { max-width: 430px; font-size: 58px; }
+            .hero-media { background-position: 61% center; }
+            .hero-media::after { background: rgba(24, 21, 19, .56); }
+            .shop-section { padding: 60px 18px 70px; }
+            .section-heading { align-items: start; flex-direction: column; gap: 10px; }
+            .section-heading h2 { font-size: 36px; }
+            .product-grid { gap: 28px 12px; }
+            .product-info h3 { font-size: 17px; }
+            .product-info p { min-height: 54px; font-size: 11px; }
+            .product-buy { align-items: start; flex-direction: column; }
+            .add-button { width: 100%; }
+            .brand-note { grid-template-columns: 1fr; }
+            .brand-note-copy { padding: 42px 24px; }
+            .brand-note h2 { font-size: 31px; }
+            .brand-note-image { min-height: 220px; }
+            footer { flex-direction: column; padding: 23px 18px; }
+            .whatsapp-link { right: 14px; bottom: 14px; min-height: 46px; padding: 0 16px; font-size: 12px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="announcement">BELEZA QUE ACOMPANHA VOCÊ · FRETE GRÁTIS A PARTIR DE R$ 199</div>
+    <header class="site-header">
+        <nav class="nav" aria-label="Navegação principal">
+            <a class="wordmark" href="#inicio" aria-label="GlowBeauty, início">Glow<span>Beauty</span></a>
+            <div class="nav-links">
+                <a href="#inicio">Início</a>
+                <a href="#produtos">Produtos</a>
+                <a href="#sobre">Nossa essência</a>
+            </div>
+            <button class="cart-trigger" id="open-cart" type="button" aria-label="Abrir carrinho, 0 itens">Sacola <span class="cart-count" id="cart-count">0</span></button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="eyebrow">Seu ritual, suas regras</p>
+                <h1 id="hero-title">A beleza de ser <em>você.</em></h1>
+                <p>Texturas que abraçam, cores que contam histórias. Encontre seus novos favoritos e crie um visual só seu.</p>
+                <a class="primary-link" href="#produtos">DESCOBRIR PRODUTOS</a>
+            </div>
+            <div class="hero-media" role="img" aria-label="Mulher se maquiando diante do espelho"></div>
+        </section>
+
+        <section class="shop-section" id="produtos" aria-labelledby="products-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">Escolhas GlowBeauty</p>
+                    <h2 id="products-title">Feitos para brilhar</h2>
+                </div>
+                <p class="section-note">Seus essenciais de beleza, com um toque especial.</p>
+            </div>
+            <div class="product-grid">
+                <article class="product">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=800&q=80" alt="Batom em tom vermelho" loading="lazy">
+                        <span class="product-tag">Mais amado</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Batom Matte UltraFix</h3>
+                        <p>Cor intensa, textura suave e duração de até 12h.</p>
+                        <div class="product-buy"><span class="price">R$ 29,90</span><button class="add-button" type="button" data-name="Batom Matte UltraFix" data-price="29.90">ADICIONAR</button></div>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=800&q=80" alt="Produtos e pincéis de maquiagem" loading="lazy">
+                        <span class="product-tag">Acabamento natural</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Base Líquida HD GlowSkin</h3>
+                        <p>Cobertura média, acabamento natural e resistente ao suor.</p>
+                        <div class="product-buy"><span class="price">R$ 59,90</span><button class="add-button" type="button" data-name="Base Líquida HD GlowSkin" data-price="59.90">ADICIONAR</button></div>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=800&q=80" alt="Paleta de cores e maquiagem" loading="lazy">
+                        <span class="product-tag">18 cores</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Paleta Rainbow Pro</h3>
+                        <p>18 cores vibrantes com pigmentação profissional.</p>
+                        <div class="product-buy"><span class="price">R$ 89,90</span><button class="add-button" type="button" data-name="Paleta de Sombras Rainbow Pro" data-price="89.90">ADICIONAR</button></div>
+                    </div>
+                </article>
+                <article class="product">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80" alt="Seleção de maquiagem para um look completo" loading="lazy">
+                        <span class="product-tag">Ritual completo</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Kit Completo GlowBeauty</h3>
+                        <p>Batom, base, paleta e pincéis para criar sem limites.</p>
+                        <div class="product-buy"><span class="price">R$ 149,90</span><button class="add-button" type="button" data-name="Kit Completo GlowBeauty" data-price="149.90">ADICIONAR</button></div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="brand-note" id="sobre" aria-labelledby="brand-title">
+            <div class="brand-note-copy">
+                <p class="eyebrow">GlowBeauty por essência</p>
+                <h2 id="brand-title">Beleza não tem regra. Tem expressão.</h2>
+                <p>Produtos para acompanhar o seu jeito de ser, seja qual for o seu próximo tom, traço ou recomeço.</p>
+            </div>
+            <div class="brand-note-image" role="img" aria-label="Seleção de produtos de beleza"></div>
+        </section>
+    </main>
+
+    <footer><span>© 2026 GlowBeauty. Todos os direitos reservados.</span><span>Beleza feita para você.</span></footer>
+    <a class="whatsapp-link" href="https://wa.me/5541992488242?text=Ol%C3%A1%21%20Gostaria%20de%20saber%20mais%20sobre%20os%20produtos%20da%20GlowBeauty." target="_blank" rel="noopener noreferrer" aria-label="Fale com a GlowBeauty pelo WhatsApp">Fale no WhatsApp</a>
+
+    <div class="overlay" id="cart-overlay" aria-hidden="true">
+        <aside class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+            <div class="cart-header"><h2 id="cart-title">Sua sacola</h2><button class="icon-button" id="close-cart" type="button" aria-label="Fechar sacola">×</button></div>
+            <div class="cart-items" id="cart-items"><p class="empty-cart">Sua sacola está esperando por você.</p></div>
+            <div class="cart-footer">
+                <div class="cart-total"><strong>Total</strong><strong id="cart-total">R$ 0,00</strong></div>
+                <button class="checkout-button" id="checkout" type="button" disabled>FINALIZAR PEDIDO</button>
+                <p class="demo-note">Checkout demonstrativo. Nenhum pagamento será processado.</p>
+            </div>
+        </aside>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script>
+        const cart = [];
+        const overlay = document.getElementById("cart-overlay");
+        const cartItems = document.getElementById("cart-items");
+        const formatter = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+        let toastTimeout;
+
+        function renderCart() {
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+            document.getElementById("cart-count").textContent = itemCount;
+            document.getElementById("open-cart").setAttribute("aria-label", `Abrir carrinho, ${itemCount} ${itemCount === 1 ? "item" : "itens"}`);
+            document.getElementById("cart-total").textContent = formatter.format(total);
+            document.getElementById("checkout").disabled = cart.length === 0;
+
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="empty-cart">Sua sacola está esperando por você.</p>';
+                return;
+            }
+
+            cartItems.replaceChildren(...cart.map((item, index) => {
+                const row = document.createElement("div");
+                row.className = "cart-item";
+                const name = document.createElement("span");
+                name.className = "cart-item-name";
+                name.textContent = item.name;
+                const price = document.createElement("span");
+                price.className = "cart-item-price";
+                price.textContent = formatter.format(item.price * item.quantity);
+                const controls = document.createElement("div");
+                controls.className = "cart-item-controls";
+                const decrease = document.createElement("button");
+                decrease.className = "quantity-button";
+                decrease.type = "button";
+                decrease.textContent = "−";
+                decrease.setAttribute("aria-label", `Diminuir quantidade de ${item.name}`);
+                decrease.addEventListener("click", () => changeQuantity(index, -1));
+                const quantity = document.createElement("span");
+                quantity.textContent = `Qtd. ${item.quantity}`;
+                const increase = document.createElement("button");
+                increase.className = "quantity-button";
+                increase.type = "button";
+                increase.textContent = "+";
+                increase.setAttribute("aria-label", `Aumentar quantidade de ${item.name}`);
+                increase.addEventListener("click", () => changeQuantity(index, 1));
+                const remove = document.createElement("button");
+                remove.className = "remove-button";
+                remove.type = "button";
+                remove.textContent = "Remover";
+                remove.addEventListener("click", () => { cart.splice(index, 1); renderCart(); });
+                controls.append(decrease, quantity, increase, remove);
+                row.append(name, price, controls);
+                return row;
+            }));
+        }
+
+        function changeQuantity(index, amount) {
+            cart[index].quantity += amount;
+            if (cart[index].quantity <= 0) cart.splice(index, 1);
+            renderCart();
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.classList.add("show");
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => toast.classList.remove("show"), 2200);
+        }
+
+        function setCartOpen(isOpen) {
+            overlay.classList.toggle("open", isOpen);
+            overlay.setAttribute("aria-hidden", String(!isOpen));
+            document.body.style.overflow = isOpen ? "hidden" : "";
+            if (isOpen) document.getElementById("close-cart").focus();
+            else document.getElementById("open-cart").focus();
+        }
+
+        document.querySelectorAll(".add-button").forEach(button => {
+            button.addEventListener("click", () => {
+                const existing = cart.find(item => item.name === button.dataset.name);
+                if (existing) existing.quantity += 1;
+                else cart.push({ name: button.dataset.name, price: Number(button.dataset.price), quantity: 1 });
+                renderCart();
+                showToast(`${button.dataset.name} adicionado à sacola`);
+            });
+        });
+
+        document.getElementById("open-cart").addEventListener("click", () => setCartOpen(true));
+        document.getElementById("close-cart").addEventListener("click", () => setCartOpen(false));
+        overlay.addEventListener("click", event => { if (event.target === overlay) setCartOpen(false); });
+        document.addEventListener("keydown", event => { if (event.key === "Escape" && overlay.classList.contains("open")) setCartOpen(false); });
+        document.getElementById("checkout").addEventListener("click", () => {
+            if (cart.length === 0) return;
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            alert(`Pedido demonstrativo concluído com ${itemCount} ${itemCount === 1 ? "item" : "itens"}, no total de ${document.getElementById("cart-total").textContent}. Nenhum pagamento foi processado.`);
+            cart.length = 0;
+            renderCart();
+            setCartOpen(false);
+        });
+    </script>
+</body>
+</html>
