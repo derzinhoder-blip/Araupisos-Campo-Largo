@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#183b31">
+    <meta name="description" content="Araupisos em Campo Largo: pisos laminados e persianas. Mais de 20 anos de experiência. Peça seu orçamento pelo WhatsApp.">
+    <title>Araupisos | Pisos e persianas em Campo Largo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --pine:#183b31; --deep:#102a24; --ink:#202923; --muted:#68736b; --copper:#d78a4f; --paper:#f3f4ef; --line:#e0e5dd; --sans:"DM Sans",sans-serif; --serif:"Playfair Display",Georgia,serif; }
+        * { box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { margin:0; color:var(--ink); background:#fff; font-family:var(--sans); }
+        a:focus-visible { outline:3px solid var(--copper); outline-offset:3px; }
+        .topline { padding:9px 20px; background:var(--pine); color:#fff; text-align:center; font-size:11px; font-weight:700; letter-spacing:.08em; }
+        .header { position:sticky; z-index:5; top:0; background:rgba(255,255,255,.96); border-bottom:1px solid var(--line); backdrop-filter:blur(12px); }
+        .nav { display:flex; max-width:1280px; min-height:74px; align-items:center; justify-content:space-between; gap:22px; margin:auto; padding:0 32px; }
+        .brand { display:inline-flex; align-items:center; gap:9px; color:var(--pine); font-size:22px; font-weight:700; text-decoration:none; }
+        .brand-mark { display:grid; width:34px; height:34px; place-items:center; border:1px solid var(--copper); color:var(--copper); font:600 19px var(--serif); }
+        .brand-name span { color:var(--copper); }
+        .nav-links { display:flex; gap:26px; }
+        .nav-links a { color:var(--ink); font-size:12px; text-decoration:none; }
+        .button { display:inline-flex; min-height:47px; align-items:center; justify-content:center; padding:0 19px; border:0; border-radius:3px; background:var(--copper); color:#1d2923; font-size:10px; font-weight:700; letter-spacing:.05em; text-decoration:none; transition:background .2s,transform .2s; }
+        .button:hover { background:#e6a36d; transform:translateY(-1px); }
+        .hero { position:relative; display:flex; min-height:660px; align-items:center; overflow:hidden; isolation:isolate; background:var(--deep); }
+        .hero-photo { position:absolute; z-index:-2; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 58%; }
+        .hero::after { position:absolute; z-index:-1; inset:0; background:linear-gradient(90deg,rgba(16,42,36,.9),rgba(16,42,36,.62) 49%,rgba(16,42,36,.12)); content:""; }
+        .hero-content { width:min(100%,1280px); margin:auto; padding:86px 32px; color:#fff; }
+        .experience { display:inline-flex; align-items:center; gap:10px; margin-bottom:25px; padding:10px 13px; border-left:3px solid var(--copper); background:rgba(16,42,36,.66); color:#fff; font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+        .experience strong { color:#f0ad75; font:600 25px/1 var(--serif); letter-spacing:0; }
+        .eyebrow { margin:0 0 14px; color:#efb47f; font-size:10px; font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+        .hero h1 { max-width:720px; margin:0; font:500 73px/1.04 var(--serif); letter-spacing:0; }
+        .hero h1 em { color:#efaa72; font-weight:500; }
+        .hero-copy { max-width:470px; margin:21px 0 27px; color:rgba(255,255,255,.88); font-size:15px; line-height:1.8; }
+        .hero .button { background:#efaa72; }
+        .hero-location { display:block; margin-top:24px; color:rgba(255,255,255,.76); font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+        .ribbon { display:flex; min-height:100px; align-items:center; justify-content:center; padding:22px; background:var(--paper); color:var(--pine); text-align:center; }
+        .ribbon p { margin:0; font-size:11px; font-weight:700; letter-spacing:.1em; line-height:1.8; text-transform:uppercase; }
+        .section { max-width:1280px; margin:auto; padding:80px 32px 86px; }
+        .section-heading { display:flex; align-items:end; justify-content:space-between; gap:26px; margin-bottom:30px; }
+        .section-heading .eyebrow { margin-bottom:9px; color:#8b704d; }
+        .section-heading h2,.contact h2 { margin:0; font:500 41px/1.12 var(--serif); letter-spacing:0; }
+        .section-note { max-width:360px; margin:0 0 3px; color:var(--muted); font-size:12px; line-height:1.7; }
+        .products { display:grid; grid-template-columns:1.15fr .85fr; gap:23px; }
+        .product { min-width:0; }
+        .product-image { overflow:hidden; aspect-ratio:1.48; background:#dce1d9; }
+        .product-image img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .45s ease; }
+        .product:hover img { transform:scale(1.035); }
+        .product-caption { display:flex; align-items:start; justify-content:space-between; gap:14px; padding-top:16px; }
+        .product-caption h3 { margin:0; font:500 25px/1.2 var(--serif); letter-spacing:0; }
+        .product-caption p { max-width:360px; margin:6px 0 0; color:var(--muted); font-size:12px; line-height:1.7; }
+        .product-link { flex:0 0 auto; padding-top:5px; color:var(--pine); font-size:10px; font-weight:700; text-decoration-color:var(--copper); text-underline-offset:5px; }
+        .portfolio { display:grid; grid-template-columns:1fr 1fr; min-height:330px; background:var(--pine); color:#fff; }
+        .portfolio-photo { min-height:330px; background:#c7c9bd url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=85") center 54%/cover no-repeat; }
+        .portfolio-copy { align-self:center; max-width:610px; padding:44px 6vw; }
+        .portfolio-copy h2 { margin:0; font:500 37px/1.15 var(--serif); letter-spacing:0; }
+        .portfolio-copy>p:not(.eyebrow) { max-width:390px; margin:13px 0 21px; color:rgba(255,255,255,.78); font-size:12px; line-height:1.8; }
+        .portfolio-links { display:flex; flex-wrap:wrap; gap:10px; }
+        .button-outline { display:inline-flex; min-height:44px; align-items:center; padding:0 14px; border:1px solid rgba(255,255,255,.52); border-radius:3px; color:#fff; font-size:10px; font-weight:700; text-decoration:none; }
+        .specs { padding:68px 32px; background:var(--paper); }
+        .specs-inner { max-width:1216px; margin:auto; }
+        .specs-heading { max-width:680px; margin-bottom:27px; }
+        .specs-heading .eyebrow { color:#8b704d; }
+        .specs-heading h2 { margin:0; font:500 37px/1.15 var(--serif); letter-spacing:0; }
+        .specs-heading p:last-child { margin:11px 0 0; color:var(--muted); font-size:12px; line-height:1.7; }
+        .spec-list { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:19px; }
+        .spec-item { padding-top:13px; border-top:2px solid var(--copper); }
+        .spec-item h3 { margin:0 0 6px; color:var(--pine); font-size:12px; }
+        .spec-item p { margin:0; color:var(--muted); font-size:11px; line-height:1.65; }
+        .reviews { display:flex; align-items:center; justify-content:space-between; gap:26px; max-width:1280px; margin:auto; padding:45px 32px; }
+        .reviews h2 { margin:0; font:500 29px/1.2 var(--serif); letter-spacing:0; }
+        .reviews p { margin:7px 0 0; color:var(--muted); font-size:12px; }
+        .reviews .button { flex:0 0 auto; }
+        .contact { display:grid; grid-template-columns:.9fr 1.1fr; gap:52px; padding:72px max(32px,calc((100vw - 1216px)/2)); background:var(--pine); color:#fff; }
+        .contact .eyebrow { color:#efaa72; }
+        .contact h2 { max-width:450px; }
+        .contact-intro { max-width:390px; margin:14px 0 0; color:rgba(255,255,255,.78); font-size:12px; line-height:1.8; }
+        .contact-actions { display:flex; flex-wrap:wrap; gap:11px; margin-top:23px; }
+        .contact-details { display:grid; grid-template-columns:1fr 1fr; gap:22px 28px; }
+        .detail { padding-top:12px; border-top:1px solid rgba(255,255,255,.25); }
+        .detail h3 { margin:0 0 7px; color:#efaa72; font-size:10px; letter-spacing:.12em; text-transform:uppercase; }
+        .detail p,.detail a { margin:0; color:#fff; font-size:12px; line-height:1.8; text-decoration:none; }
+        .detail a:hover { text-decoration:underline; text-underline-offset:3px; }
+        .source-note { max-width:1280px; margin:auto; padding:17px 32px; color:var(--muted); font-size:10px; line-height:1.6; }
+        .footer { display:flex; justify-content:space-between; gap:18px; padding:19px max(32px,calc((100vw - 1216px)/2)); background:var(--pine-dark); color:rgba(255,255,255,.7); font-size:10px; }
+        .whatsapp { position:fixed; z-index:8; right:21px; bottom:21px; display:inline-flex; min-height:49px; align-items:center; justify-content:center; padding:0 18px; border:1px solid rgba(255,255,255,.25); border-radius:999px; background:#168c54; box-shadow:0 8px 24px rgba(16,42,36,.28); color:#fff; font-size:12px; font-weight:700; text-decoration:none; transition:background .2s,transform .2s; }
++        .whatsapp:hover { background:#107443; transform:translateY(-2px); }
++        @media (max-width:760px) {
++            .nav { min-height:65px; padding:0 17px; }
++            .brand { gap:7px; font-size:19px; }
++            .brand-mark { width:30px; height:30px; }
++            .nav-links { display:none; }
++            .nav>.button { min-height:40px; padding:0 10px; font-size:9px; }
++            .hero { min-height:600px; }
++            .hero-photo { object-position:58% center; }
++            .hero::after { background:linear-gradient(90deg,rgba(16,42,36,.86),rgba(16,42,36,.4)); }
++            .hero-content { padding:68px 21px; }
++            .hero h1 { max-width:510px; font-size:53px; }
++            .experience { margin-bottom:21px; font-size:10px; }
++            .ribbon { min-height:94px; }
++            .section { padding:59px 19px 64px; }
++            .section-heading { align-items:start; flex-direction:column; gap:10px; }
++            .section-heading h2,.contact h2 { font-size:34px; }
++            .products { grid-template-columns:1fr; gap:30px; }
++            .product-image { aspect-ratio:1.35; }
++            .product-caption { flex-direction:column; gap:7px; }
++            .portfolio { grid-template-columns:1fr; }
++            .portfolio-photo { min-height:250px; }
++            .portfolio-copy { padding:39px 21px; }
++            .portfolio-copy h2 { font-size:32px; }
++            .specs { padding:53px 19px; }
++            .specs-heading h2 { font-size:32px; }
++            .spec-list { grid-template-columns:1fr 1fr; gap:20px 15px; }
++            .reviews { align-items:start; flex-direction:column; padding:36px 19px; }
++            .reviews h2 { font-size:26px; }
++            .contact { grid-template-columns:1fr; gap:31px; padding:54px 19px; }
++            .contact-details { gap:19px 15px; }
++            .source-note { padding:17px 19px; }
++            .footer { flex-direction:column; padding:19px; }
++            .whatsapp { right:13px; bottom:13px; min-height:45px; padding:0 14px; }
++        }
++        @media (max-width:380px) {
++            .brand { font-size:17px; }
++            .nav>.button { padding:0 8px; font-size:8px; }
++            .hero h1 { font-size:45px; }
++            .contact-details,.spec-list { grid-template-columns:1fr; }
++        }
++        @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto!important; animation-duration:.01ms!important; transition-duration:.01ms!important; } }
++    </style>
++</head>
++<body>
++    <div class="topline">PISOS LAMINADOS E PERSIANAS · CAMPO LARGO, PARANÁ</div>
++    <header class="header">
++        <nav class="nav" aria-label="Navegação principal">
++            <a class="brand" href="#inicio" aria-label="Araupisos, início"><span class="brand-mark" aria-hidden="true">A</span><span class="brand-name">ARAU<span>PISOS</span></span></a>
++            <div class="nav-links"><a href="#solucoes">Soluções</a><a href="#especificacoes">Especificações</a><a href="#contato">A loja</a></div>
++            <a class="button" href="https://wa.me/5541998301211?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Araupisos%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer">PEDIR ORÇAMENTO</a>
++        </nav>
++    </header>
++
++    <main>
++        <section class="hero" id="inicio" aria-labelledby="hero-title">
++            <img class="hero-photo" src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2000&q=90" alt="Sala contemporânea com piso de madeira e luz natural" fetchpriority="high">
++            <div class="hero-content">
++                <div class="experience"><strong>+20</strong> ANOS DE EXPERIÊNCIA</div>
++                <p class="eyebrow">O início de um novo ambiente</p>
++                <h1 id="hero-title">Pisos que mudam o jeito de <em>sentir a casa.</em></h1>
++                <p class="hero-copy">Pisos laminados e persianas para renovar seus espaços. Encontre a Araupisos no Centro de Campo Largo.</p>
++                <a class="button" href="https://wa.me/5541998301211?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Araupisos%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer">CONVERSAR PELO WHATSAPP</a>
++                <span class="hero-location">Rua XV de Novembro · Campo Largo, PR</span>
++            </div>
++        </section>
++
++        <div class="ribbon"><p>Acabamentos para acompanhar a vida real, todos os dias.</p></div>
++
++        <section class="section" id="solucoes" aria-labelledby="solutions-title">
++            <div class="section-heading"><div><p class="eyebrow">Araupisos · Campo Largo</p><h2 id="solutions-title">Escolhas que transformam o ambiente</h2></div><p class="section-note">Consulte modelos, marcas disponíveis, estoque e valores diretamente com a loja.</p></div>
++            <div class="products">
++                <article class="product"><div class="product-image"><img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85" alt="Ambiente residencial com piso em tom natural" loading="lazy"></div><div class="product-caption"><div><h3>Pisos laminados</h3><p>Acabamentos com visual acolhedor para diferentes ambientes da casa.</p></div><a class="product-link" href="https://wa.me/5541998301211?text=Ol%C3%A1%21%20Quero%20conhecer%20as%20op%C3%A7%C3%B5es%20de%20pisos%20laminados." target="_blank" rel="noopener noreferrer">CONSULTAR ↗</a></div></article>
++                <article class="product"><div class="product-image"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=85" alt="Interior iluminado com cortina e decoração natural" loading="lazy"></div><div class="product-caption"><div><h3>Persianas</h3><p>Opções para compor a luz e a privacidade dos seus espaços.</p></div><a class="product-link" href="https://wa.me/5541998301211?text=Ol%C3%A1%21%20Quero%20conhecer%20as%20op%C3%A7%C3%B5es%20de%20persianas." target="_blank" rel="noopener noreferrer">CONSULTAR ↗</a></div></article>
++            </div>
++        </section>
++
++        <section class="portfolio" aria-labelledby="portfolio-title">
++            <div class="portfolio-photo" role="img" aria-label="Inspiração de ambiente com piso amadeirado"></div>
++            <div class="portfolio-copy"><p class="eyebrow">Acompanhe a loja</p><h2 id="portfolio-title">Fotos e vídeos de perto</h2><p>Veja as publicações e os vídeos da Araupisos diretamente no perfil oficial.</p><div class="portfolio-links"><a class="button" href="https://www.instagram.com/araupisoscampolargo/" target="_blank" rel="noopener noreferrer">FOTOS NO INSTAGRAM</a><a class="button-outline" href="https://www.instagram.com/araupisoscampolargo/reels/" target="_blank" rel="noopener noreferrer">VER VÍDEOS</a></div></div>
++        </section>
++
++        <section class="specs" id="especificacoes" aria-labelledby="specs-title">
++            <div class="specs-inner"><div class="specs-heading"><p class="eyebrow">Escolha com informação</p><h2 id="specs-title">Marcas e ficha técnica</h2><p>Não encontrei um catálogo público confiável com as marcas e modelos vendidos pela loja. Peça a ficha do produto disponível antes de fechar o orçamento.</p></div><div class="spec-list"><article class="spec-item"><h3>Marca e linha</h3><p>Fabricante, coleção e referência exata do modelo.</p></article><article class="spec-item"><h3>Classe de uso</h3><p>Indicação do fabricante para o ambiente e a circulação.</p></article><article class="spec-item"><h3>Medidas e instalação</h3><p>Espessura, dimensões e sistema de instalação da linha.</p></article><article class="spec-item"><h3>Garantia</h3><p>Condições e prazo definidos pelo fabricante.</p></article></div></div>
++        </section>
++
++        <section class="reviews" aria-labelledby="reviews-title"><div><h2 id="reviews-title">Opiniões de quem já conhece a loja</h2><p>Consulte a nota e as avaliações atuais direto no Google Maps.</p></div><a class="button" href="https://www.google.com/maps/search/?api=1&query=Araupisos+Campo+Largo+PR" target="_blank" rel="noopener noreferrer">VER AVALIAÇÕES NO GOOGLE</a></section>
++
++        <section class="contact" id="contato" aria-labelledby="contact-title">
++            <div><p class="eyebrow">Estamos em Campo Largo</p><h2 id="contact-title">Visite a loja. Vamos conversar sobre seu projeto.</h2><p class="contact-intro">Entre em contato para confirmar atendimento, marcas, modelos e disponibilidade.</p><div class="contact-actions"><a class="button" href="https://www.google.com/maps/search/?api=1&query=Rua+XV+de+Novembro%2C+2567%2C+loja+11%2C+Centro%2C+Campo+Largo%2C+PR" target="_blank" rel="noopener noreferrer">ABRIR NO MAPA</a><a class="button-outline" href="https://www.instagram.com/araupisoscampolargo/" target="_blank" rel="noopener noreferrer">INSTAGRAM</a></div></div>
++            <div class="contact-details"><div class="detail"><h3>Endereço</h3><p>Rua XV de Novembro, 2567, loja 11<br>Centro, Campo Largo - PR<br>CEP 83601-030</p></div><div class="detail"><h3>WhatsApp</h3><p><a href="https://wa.me/5541998301211" target="_blank" rel="noopener noreferrer">(41) 99830-1211</a></p></div><div class="detail"><h3>Telefone da loja</h3><p><a href="tel:+554133922990">(41) 3392-2990</a></p></div><div class="detail"><h3>Horário informado online</h3><p>Segunda a sexta: 9h às 18h<br>Sábado: 9h às 13h<br>Domingo: fechado</p></div></div>
++        </section>
++    </main>
++
++    <p class="source-note">Endereço e telefone fixo conferidos em cadastros comerciais públicos. Horários podem mudar; confirme com a loja, especialmente em feriados. Fotos de ambientes são ilustrativas; trabalhos reais e vídeos estão no Instagram.</p>
++    <footer class="footer"><span>© 2026 Araupisos · Campo Largo, PR</span><span>Pisos laminados e persianas para o seu projeto.</span></footer>
++    <a class="whatsapp" href="https://wa.me/5541998301211?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Araupisos%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer" aria-label="Fale com a Araupisos pelo WhatsApp">Fale no WhatsApp</a>
++</body>
++</html>
