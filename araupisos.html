@@ -17,11 +17,9 @@
         a:focus-visible { outline:3px solid var(--copper); outline-offset:3px; }
         .topline { padding:9px 20px; background:#46392d; color:#fff; text-align:center; font-size:11px; font-weight:700; letter-spacing:.08em; }
         .header { position:sticky; z-index:5; top:0; background:rgba(248,243,233,.97); border-bottom:1px solid #d7c5ad; backdrop-filter:blur(12px); }
-        .nav { display:flex; max-width:1280px; min-height:116px; align-items:center; justify-content:space-between; gap:22px; margin:auto; padding:0 32px; }
-        .brand { display:inline-flex; align-items:center; gap:13px; color:var(--pine); font-size:27px; font-weight:700; text-decoration:none; }
-        .brand-mark { display:grid; width:92px; height:92px; place-items:center; overflow:hidden; border:1px solid #806442; border-radius:4px; background:#fff; }
-        .brand-mark img { display:block; width:100%; height:100%; object-fit:contain; }
-        .brand-name span { color:var(--copper); }
+        .nav { display:flex; max-width:1280px; min-height:168px; align-items:center; justify-content:space-between; gap:22px; margin:auto; padding:0 32px; }
+        .brand { display:inline-flex; flex:0 0 auto; align-items:center; text-decoration:none; }
+        .brand-logo { display:block; width:144px; height:144px; object-fit:contain; }
         .nav-links { display:flex; gap:26px; }
         .nav-links a { color:var(--ink); font-size:12px; text-decoration:none; }
         .button { display:inline-flex; min-height:47px; align-items:center; justify-content:center; padding:0 19px; border:0; border-radius:3px; background:var(--copper); color:#1d2923; font-size:10px; font-weight:700; letter-spacing:.05em; text-decoration:none; transition:background .2s,transform .2s; }
@@ -117,9 +115,8 @@
         .whatsapp { position:fixed; z-index:8; right:21px; bottom:21px; display:inline-flex; min-height:49px; align-items:center; justify-content:center; padding:0 18px; border:1px solid rgba(255,255,255,.25); border-radius:999px; background:#168c54; box-shadow:0 8px 24px rgba(16,42,36,.28); color:#fff; font-size:12px; font-weight:700; text-decoration:none; transition:background .2s,transform .2s; }
         .whatsapp:hover { background:#107443; transform:translateY(-2px); }
         @media (max-width:760px) {
-            .nav { min-height:86px; padding:0 17px; }
-            .brand { gap:9px; font-size:21px; }
-            .brand-mark { width:64px; height:64px; }
+            .nav { min-height:124px; padding:0 17px; }
+            .brand-logo { width:104px; height:104px; }
             .nav-links { display:none; }
             .nav>.button { min-height:40px; padding:0 10px; font-size:9px; }
             .hero { min-height:600px; }
@@ -171,7 +168,7 @@
     <div class="topline">PISOS LAMINADOS E PERSIANAS · CAMPO LARGO, PARANÁ</div>
     <header class="header">
         <nav class="nav" aria-label="Navegação principal">
-            <a class="brand" href="#inicio" aria-label="Araupisos, início"><span class="brand-mark"><img src="assets/araupisos-logo.jpg" alt="Logo Araupisos"></span><span class="brand-name">ARAU<span>PISOS</span></span></a>
+            <a class="brand" href="#inicio" aria-label="Araupisos, início"><img class="brand-logo" src="assets/araupisos-logo.jpg" alt="Logo oficial Araupisos"></a>
             <div class="nav-links"><a href="#solucoes">Soluções</a><a href="#especificacoes">Especificações</a><a href="#contato">A loja</a></div>
             <a class="button" href="https://wa.me/554133922990?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20Araupisos%20e%20gostaria%20de%20um%20or%C3%A7amento." target="_blank" rel="noopener noreferrer">PEDIR ORÇAMENTO</a>
         </nav>
